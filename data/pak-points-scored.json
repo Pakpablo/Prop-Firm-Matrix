@@ -1,0 +1,979 @@
+{
+  "methodology": {
+    "totalPoints": 100,
+    "categories": [
+      {
+        "name": "Trust & Reputation",
+        "points": 30,
+        "detail": "Trustpilot star rating (20 pts) + review-volume confidence (10 pts) — a 4.8★ score from 40,000 reviews scores higher than the same rating from 65 reviews."
+      },
+      {
+        "name": "Payout Reliability",
+        "points": 25,
+        "detail": "Speed/automation of payouts (15 pts) + independently verified payout track record (10 pts)."
+      },
+      {
+        "name": "Trader Economics",
+        "points": 20,
+        "detail": "Profit split percentage (12 pts) + pricing/value relative to account size (8 pts)."
+      },
+      {
+        "name": "Rules Flexibility",
+        "points": 15,
+        "detail": "How restrictive the drawdown model, consistency rules, and daily loss limits are."
+      },
+      {
+        "name": "Longevity & Scale",
+        "points": 10,
+        "detail": "Years operating (6 pts) + market position / account scaling ceiling (4 pts)."
+      }
+    ],
+    "note": "Every firm is scored on the identical rubric and weights, including Day Traders — no firm is scored on different criteria. Firms marked confidence:\"researched\" were scored from firm-specific public data (Trustpilot, disclosed terms, independent payout trackers). Firms marked confidence:\"provisional\" did not have enough public data gathered yet for a precise score and instead received a conservative tier-based estimate — treat these as placeholders pending real research, not final rankings."
+  },
+  "firms": [
+    {
+      "name": "MyFundedFutures",
+      "vertical": "futures",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 29.3,
+        "payout": 23.5,
+        "economics": 18.8,
+        "rules": 12,
+        "longevity": 8,
+        "pakPoints": 91.6
+      },
+      "rank": 1,
+      "domain": "myfundedfutures.com"
+    },
+    {
+      "name": "The5ers",
+      "vertical": "forex",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 29.2,
+        "payout": 18.5,
+        "economics": 18,
+        "rules": 15,
+        "longevity": 10,
+        "pakPoints": 90.7
+      },
+      "rank": 2,
+      "domain": "the5ers.com"
+    },
+    {
+      "name": "Funding Pips",
+      "vertical": "forex",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 28.0,
+        "payout": 18.5,
+        "economics": 20,
+        "rules": 12,
+        "longevity": 8,
+        "pakPoints": 86.5
+      },
+      "rank": 3,
+      "domain": "fundingpips.com"
+    },
+    {
+      "name": "FTMO",
+      "vertical": "forex",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 29.2,
+        "payout": 22,
+        "economics": 15.3,
+        "rules": 9,
+        "longevity": 10,
+        "pakPoints": 85.5
+      },
+      "rank": 4,
+      "domain": "ftmo.com"
+    },
+    {
+      "name": "Apex Trader Funding",
+      "vertical": "futures",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 27.4,
+        "payout": 14,
+        "economics": 20,
+        "rules": 12,
+        "longevity": 9,
+        "pakPoints": 82.4
+      },
+      "rank": 5,
+      "domain": "apextraderfunding.com"
+    },
+    {
+      "name": "TakeProfitTrader",
+      "vertical": "futures",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 27.4,
+        "payout": 17,
+        "economics": 15.3,
+        "rules": 12,
+        "longevity": 7.5,
+        "pakPoints": 79.2
+      },
+      "rank": 6,
+      "domain": "takeprofittrader.com"
+    },
+    {
+      "name": "City Traders Imperium",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 25.8,
+        "payout": 14,
+        "economics": 16.5,
+        "rules": 15,
+        "longevity": 7.5,
+        "pakPoints": 78.8
+      },
+      "rank": 7,
+      "domain": "citytradersimperium.com"
+    },
+    {
+      "name": "Bulenox",
+      "vertical": "futures",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 27.8,
+        "payout": 12,
+        "economics": 18,
+        "rules": 12,
+        "longevity": 7.5,
+        "pakPoints": 77.3
+      },
+      "rank": 8,
+      "domain": "bulenox.com"
+    },
+    {
+      "name": "FXIFY",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 27.5,
+        "payout": 18.5,
+        "economics": 15.3,
+        "rules": 9,
+        "longevity": 5.5,
+        "pakPoints": 75.8
+      },
+      "rank": 9,
+      "domain": "fxify.com"
+    },
+    {
+      "name": "Funded Trading Plus",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 26.7,
+        "payout": 12,
+        "economics": 15.3,
+        "rules": 15,
+        "longevity": 6.5,
+        "pakPoints": 75.5
+      },
+      "rank": 10,
+      "domain": "fundedtradingplus.com"
+    },
+    {
+      "name": "Blueberry Funded",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 24.3,
+        "payout": 14,
+        "economics": 16.8,
+        "rules": 15,
+        "longevity": 4.5,
+        "pakPoints": 74.6
+      },
+      "rank": 11,
+      "domain": "blueberryfunded.com"
+    },
+    {
+      "name": "Day Traders",
+      "vertical": "futures",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 23.0,
+        "payout": 17,
+        "economics": 18,
+        "rules": 12,
+        "longevity": 4.5,
+        "pakPoints": 74.5
+      },
+      "rank": 12,
+      "domain": "daytraders.com"
+    },
+    {
+      "name": "Tradeify",
+      "vertical": "futures",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 26.3,
+        "payout": 14,
+        "economics": 16.8,
+        "rules": 12,
+        "longevity": 4.5,
+        "pakPoints": 73.6
+      },
+      "rank": 13,
+      "domain": "tradeify.co"
+    },
+    {
+      "name": "FundedNext",
+      "vertical": "forex",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 28.4,
+        "payout": 12,
+        "economics": 15.9,
+        "rules": 9,
+        "longevity": 8,
+        "pakPoints": 73.3
+      },
+      "rank": 14,
+      "domain": "fundednext.com"
+    },
+    {
+      "name": "Topstep",
+      "vertical": "futures",
+      "tier": 1,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 26.0,
+        "payout": 12,
+        "economics": 15.3,
+        "rules": 9,
+        "longevity": 10,
+        "pakPoints": 72.3
+      },
+      "rank": 15,
+      "domain": "topstep.com"
+    },
+    {
+      "name": "Alpha Capital Group",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 28.6,
+        "payout": 12,
+        "economics": 15.3,
+        "rules": 6,
+        "longevity": 6.5,
+        "pakPoints": 68.4
+      },
+      "rank": 16,
+      "domain": "alphacapitalgroup.uk"
+    },
+    {
+      "name": "TradeDay / Trading Pit / Elite / Earn2Trade",
+      "vertical": "futures",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 25.1,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 7.5,
+        "pakPoints": 68.3
+      },
+      "rank": 17,
+      "domain": "tradeday.com"
+    },
+    {
+      "name": "Lucid Trading",
+      "vertical": "futures",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 25.4,
+        "payout": 12,
+        "economics": 16.8,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 67.7
+      },
+      "rank": 18,
+      "domain": "lucidtrading.com"
+    },
+    {
+      "name": "E8 Markets",
+      "vertical": "forex",
+      "tier": 2,
+      "confidence": "researched",
+      "breakdown": {
+        "trust": 26.1,
+        "payout": 12,
+        "economics": 14.1,
+        "rules": 9,
+        "longevity": 6.5,
+        "pakPoints": 67.7
+      },
+      "rank": 19,
+      "domain": "e8markets.com"
+    },
+    {
+      "name": "Elite Trader Funding",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 20,
+      "domain": "elitetraderfunding.com"
+    },
+    {
+      "name": "Legends Trading",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 21,
+      "domain": "legendstrading.com"
+    },
+    {
+      "name": "PropShopTrader",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 22,
+      "domain": "propshoptrader.com"
+    },
+    {
+      "name": "Top One Futures",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 23,
+      "domain": "toponefutures.com"
+    },
+    {
+      "name": "AtlasFunded",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 24,
+      "domain": "atlasfunded.com"
+    },
+    {
+      "name": "Alpha Futures",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 25,
+      "domain": "alpha.futures"
+    },
+    {
+      "name": "One Up Trader",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 26,
+      "domain": "oneuptrader.com"
+    },
+    {
+      "name": "YRM Prop",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 27,
+      "domain": "yrmprop.com"
+    },
+    {
+      "name": "TickTickTrader",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 28,
+      "domain": "tickticktrader.com"
+    },
+    {
+      "name": "Phidias Propfirm",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 29,
+      "domain": "phidiaspropfirm.com"
+    },
+    {
+      "name": "Funded Futures Network",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 30,
+      "domain": "fundedfuturesnetwork.com"
+    },
+    {
+      "name": "Purdia Capital",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 31,
+      "domain": "purdiacapital.com"
+    },
+    {
+      "name": "Phoenix Trader Funding",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 32,
+      "domain": "phoenixtraderfunding.com"
+    },
+    {
+      "name": "TX3 Funding",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 33,
+      "domain": "tx3funding.com"
+    },
+    {
+      "name": "BluSky Trading",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 34,
+      "domain": "bluskytrading.com"
+    },
+    {
+      "name": "Trader2B",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 35,
+      "domain": "trader2b.com"
+    },
+    {
+      "name": "FundedSeat",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 36,
+      "domain": "fundedseat.com"
+    },
+    {
+      "name": "AquaFutures",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 37,
+      "domain": "aquafutures.com"
+    },
+    {
+      "name": "4PropTrader",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 38,
+      "domain": "4proptrader.com"
+    },
+    {
+      "name": "Goat Funded Futures",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 39,
+      "domain": "goatfundedfutures.com"
+    },
+    {
+      "name": "Velotrade",
+      "vertical": "futures",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 40,
+      "domain": "velotrade.com"
+    },
+    {
+      "name": "Maven Trading",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 41,
+      "domain": "maventrading.com"
+    },
+    {
+      "name": "DNA Funded",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 42,
+      "domain": "dnafunded.com"
+    },
+    {
+      "name": "Atmos Funded",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 43,
+      "domain": "atmosfunded.com"
+    },
+    {
+      "name": "Fintokei",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 44,
+      "domain": "fintokei.com"
+    },
+    {
+      "name": "FTUK",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 45,
+      "domain": "ftuk.com"
+    },
+    {
+      "name": "FunderPro",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 46,
+      "domain": "funderpro.com"
+    },
+    {
+      "name": "IC Funded",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 47,
+      "domain": "icfunded.com"
+    },
+    {
+      "name": "Leveraged",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 48,
+      "domain": "leveraged.com"
+    },
+    {
+      "name": "Lux Trading Firm",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 49,
+      "domain": "luxtradingfirm.com"
+    },
+    {
+      "name": "PipFarm",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 50,
+      "domain": "pipfarm.com"
+    },
+    {
+      "name": "SpiceProp",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 51,
+      "domain": "spiceprop.com"
+    },
+    {
+      "name": "Sway Funded",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 52,
+      "domain": "swayfunded.com"
+    },
+    {
+      "name": "Top Tier Trader",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 53,
+      "domain": "toptiertrader.com"
+    },
+    {
+      "name": "Wall Street Funded",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 54,
+      "domain": "wallstreetfunded.com"
+    },
+    {
+      "name": "For Traders",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 55,
+      "domain": "fortraders.com"
+    },
+    {
+      "name": "Funded Express",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 56,
+      "domain": "fundedexpress.com"
+    },
+    {
+      "name": "Here Capital",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 57,
+      "domain": "herecapital.com"
+    },
+    {
+      "name": "Goat Funded Trader",
+      "vertical": "forex",
+      "tier": 3,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 22.8,
+        "payout": 12,
+        "economics": 14.7,
+        "rules": 9,
+        "longevity": 4.5,
+        "pakPoints": 63.0
+      },
+      "rank": 58,
+      "domain": "goatfundedtrader.com"
+    },
+    {
+      "name": "Hola Prime",
+      "vertical": "forex",
+      "tier": 4,
+      "confidence": "provisional",
+      "breakdown": {
+        "trust": 19.4,
+        "payout": 9,
+        "economics": 14.1,
+        "rules": 6,
+        "longevity": 4.5,
+        "pakPoints": 53.0
+      },
+      "rank": 59,
+      "domain": "holaprime.com"
+    }
+  ]
+}

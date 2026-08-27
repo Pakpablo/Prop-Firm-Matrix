@@ -1,146 +1,96 @@
-"use client";
+import FirmLogo from "@/components/FirmLogo";
+import { methodology, sortedByPakPoints } from "@/lib/pakPoints";
 
-import { useMemo, useState } from "react";
-import { firms as allFirms, profitSplitSortValue, stats } from "@/lib/data";
-import type { Category, SortDirection, SortKey, Tier } from "@/lib/types";
-import FilterBar from "@/components/FilterBar";
-import MatrixTable from "@/components/MatrixTable";
-import StatCards from "@/components/StatCards";
-import CompareBar from "@/components/CompareBar";
-import CompareModal from "@/components/CompareModal";
-
+/**
+ * DASHBOARD — overview stats + full firm list, sorted by PAK Points
+ * (sortedByPakPoints() sorts defensively even though the source data
+ * is already ranked, in case it gets edited later).
+ */
 export default function Dashboard() {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState<Category | "All">("All");
-  const [activeTiers, setActiveTiers] = useState<Set<Tier>>(new Set());
-  const [sortKey, setSortKey] = useState<SortKey>("tier");
-  const [sortDir, setSortDir] = useState<SortDirection>("asc");
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [compareIds, setCompareIds] = useState<string[]>([]);
-  const [compareOpen, setCompareOpen] = useState(false);
-
-  function toggleTier(t: Tier) {
-    setActiveTiers((prev) => {
-      const next = new Set(prev);
-      if (next.has(t)) next.delete(t);
-      else next.add(t);
-      return next;
-    });
-  }
-
-  function toggleCompare(id: string) {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      if (prev.length >= 3) return prev;
-      return [...prev, id];
-    });
-  }
-
-  const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    let result = allFirms.filter((f) => {
-      if (category !== "All" && f.category !== category) return false;
-      if (activeTiers.size > 0 && !activeTiers.has(f.tier)) return false;
-      if (
-        q &&
-        !`${f.name} ${f.profile?.headquarters ?? ""}`.toLowerCase().includes(q)
-      )
-        return false;
-      return true;
-    });
-
-    result = [...result].sort((a, b) => {
-      let cmp = 0;
-      switch (sortKey) {
-        case "name":
-          cmp = a.name.localeCompare(b.name);
-          break;
-        case "tier":
-          cmp = a.tier - b.tier;
-          break;
-        case "trustpilotScore":
-          cmp = (a.profile?.trustpilotScore ?? -1) - (b.profile?.trustpilotScore ?? -1);
-          break;
-        case "avgEvaluationFee50k":
-          cmp =
-            (a.profile?.pricing.avgEvaluationFee50k ?? Infinity) -
-            (b.profile?.pricing.avgEvaluationFee50k ?? Infinity);
-          break;
-        case "profitSplit":
-          cmp =
-            profitSplitSortValue(a.profile?.payoutTerms.profitSplit) -
-            profitSplitSortValue(b.profile?.payoutTerms.profitSplit);
-          break;
-      }
-      return sortDir === "asc" ? cmp : -cmp;
-    });
-
-    return result;
-  }, [search, category, activeTiers, sortKey, sortDir]);
-
-  const compareFirms = useMemo(
-    () => compareIds.map((id) => allFirms.find((f) => f.id === id)!).filter(Boolean),
-    [compareIds]
-  );
+  const firms = sortedByPakPoints();
+  const researchedCount = firms.filter((f) => f.confidence === "researched").length;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 pb-24 sm:px-6">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
-          Prop Firm Competitor Matrix
-        </h1>
-        <p className="mt-1.5 max-w-2xl text-sm text-zinc-400">
-          Tracking {allFirms.length} Futures and Forex/CFD proprietary trading firms —
-          {" "}
-          {stats.profiledCount} with full pricing, drawdown rule, payout term, and
-          reputation detail, the rest logo-identified pending deeper research.
-        </p>
-      </header>
+    <div style={{ maxWidth: 960, margin: "0 auto", padding: "24px 16px" }}>
+      <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 4 }}>
+        Prop Firm Dashboard
+      </h1>
+      <p style={{ color: "#666", marginBottom: 20 }}>
+        {firms.length} firms tracked &middot; ranked by PAK Points
+      </p>
 
-      <div className="mb-6">
-        <StatCards />
+      {/* ---- PAK Points methodology note ---- */}
+      <div
+        style={{
+          background: "#FCEEEF",
+          borderLeft: "3px solid #D42B3F",
+          padding: "14px 16px",
+          borderRadius: 4,
+          marginBottom: 24,
+          fontSize: 13,
+          lineHeight: 1.6,
+        }}
+      >
+        <b style={{ color: "#D42B3F" }}>What are PAK Points?</b> A 100-point score
+        built from five weighted categories:{" "}
+        {methodology.categories.map((c) => `${c.name} (${c.points} pts)`).join(" · ")}
+        . Every firm is scored on the same rubric.{" "}
+        <span style={{ color: "#888" }}>
+          {researchedCount} of {firms.length} firms have a fully researched
+          score; the rest show a provisional (tier-based) estimate until
+          researched in full &mdash; look for the badge on each row.
+        </span>
       </div>
 
-      <div className="mb-4">
-        <FilterBar
-          search={search}
-          onSearchChange={setSearch}
-          category={category}
-          onCategoryChange={setCategory}
-          activeTiers={activeTiers}
-          onToggleTier={toggleTier}
-          sortKey={sortKey}
-          sortDir={sortDir}
-          onSortKeyChange={setSortKey}
-          onToggleSortDir={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
-          resultCount={filtered.length}
-        />
+      {/* ---- Firm list ---- */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {firms.map((firm, i) => (
+          <div
+            key={firm.name}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              padding: "10px 14px",
+              border: "1px solid #eee",
+              borderRadius: 8,
+              background: i < 3 ? "#FFFBF5" : "#fff",
+            }}
+          >
+            <div style={{ width: 24, fontWeight: 700, color: "#999", fontSize: 13 }}>
+              {i + 1}
+            </div>
+            <FirmLogo name={firm.name} domain={firm.domain} size={32} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{firm.name}</div>
+              <div style={{ fontSize: 11, color: "#999", textTransform: "capitalize" }}>
+                {firm.vertical} &middot; Tier {firm.tier}
+                {firm.confidence === "provisional" && (
+                  <span
+                    style={{
+                      marginLeft: 6,
+                      fontSize: 9,
+                      fontWeight: 700,
+                      color: "#b7791f",
+                      background: "#fef3c7",
+                      padding: "1px 6px",
+                      borderRadius: 6,
+                    }}
+                  >
+                    PROVISIONAL
+                  </span>
+                )}
+              </div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div style={{ fontWeight: 800, fontSize: 18, color: "#D42B3F" }}>
+                {firm.breakdown.pakPoints}
+              </div>
+              <div style={{ fontSize: 9, color: "#999" }}>PAK PTS</div>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <MatrixTable
-        firms={filtered}
-        expandedId={expandedId}
-        onToggleExpand={(id) => setExpandedId((cur) => (cur === id ? null : id))}
-        compareIds={compareIds}
-        onToggleCompare={toggleCompare}
-        compareFull={compareIds.length >= 3}
-      />
-
-      <footer className="mt-8 text-center text-xs text-zinc-600">
-        Data compiled from Trustpilot and official firm pricing pages, August 2026.
-        Fields marked &ldquo;—&rdquo; or &ldquo;withheld&rdquo; could not be verified at research time.
-      </footer>
-
-      <CompareBar
-        firms={compareFirms}
-        onRemove={toggleCompare}
-        onClear={() => setCompareIds([])}
-        onCompare={() => setCompareOpen(true)}
-      />
-
-      {compareOpen && (
-        <CompareModal firms={compareFirms} onClose={() => setCompareOpen(false)} />
-      )}
     </div>
   );
 }

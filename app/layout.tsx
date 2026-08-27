@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import NavTabs from "@/components/NavTabs";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,18 +14,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prop Firm Competitor Matrix",
+  title: "Prop Firm Dashboard",
   description:
-    "Interactive competitive intelligence dashboard tracking Futures and Forex/CFD prop trading firms.",
+    "PAK Points — competitive intelligence dashboard ranking Futures and Forex/CFD prop trading firms.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-zinc-950 text-zinc-100">{children}</body>
+      <body className="min-h-full bg-[#F5F5F7] text-[#111]">
+        <NavTabs />
+        {children}
+      </body>
     </html>
   );
 }
