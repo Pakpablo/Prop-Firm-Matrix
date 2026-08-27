@@ -12,6 +12,18 @@ export interface PakBreakdown {
   pakPoints: number;
 }
 
+export interface FirmDetails {
+  /** Present instead of the profile fields below when a firm hasn't been researched in depth yet. */
+  note?: string;
+  hq?: string;
+  platforms?: string;
+  accountTypes?: string;
+  drawdown?: string;
+  payoutTerms?: string;
+  pricing?: string;
+  reputation?: string;
+}
+
 export interface PakFirm {
   name: string;
   vertical: Vertical;
@@ -20,6 +32,7 @@ export interface PakFirm {
   breakdown: PakBreakdown;
   rank: number;
   domain: string;
+  details?: FirmDetails;
 }
 
 export interface PakCategory {
@@ -44,6 +57,8 @@ export function sortedByPakPoints(): PakFirm[] {
 export function getFirm(name: string): PakFirm | undefined {
   return firms.find((f) => f.name === name);
 }
+
+export type DetailFieldKey = keyof Omit<FirmDetails, "note">;
 
 export const CATEGORY_KEYS = [
   { key: "trust", label: "Trust & Reputation", max: 30 },
