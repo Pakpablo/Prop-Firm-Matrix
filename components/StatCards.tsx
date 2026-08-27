@@ -31,20 +31,20 @@ export default function StatCards() {
       <StatCard
         label="Avg Trustpilot"
         value={stats.avgTrustpilotScore.toFixed(2)}
-        sub="across scored firms"
+        sub={`across ${stats.profiledCount} profiled firms`}
       />
       <StatCard
         label="Cheapest 50K Eval"
         value={
           stats.cheapestEval
-            ? `$${stats.cheapestEval.pricing.avgEvaluationFee50k}`
+            ? `$${stats.cheapestEval.profile!.pricing.avgEvaluationFee50k}`
             : "—"
         }
         sub={stats.cheapestEval?.name}
       />
       <StatCard
         label="Top Rated"
-        value={stats.topRated ? stats.topRated.trustpilotScore!.toFixed(1) : "—"}
+        value={stats.topRated ? stats.topRated.profile!.trustpilotScore!.toFixed(1) : "—"}
         sub={stats.topRated?.name}
       />
     </div>

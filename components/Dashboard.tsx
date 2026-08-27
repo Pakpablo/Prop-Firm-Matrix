@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { firms as allFirms, profitSplitSortValue } from "@/lib/data";
+import { firms as allFirms, profitSplitSortValue, stats } from "@/lib/data";
 import type { Category, SortDirection, SortKey, Tier } from "@/lib/types";
 import FilterBar from "@/components/FilterBar";
 import MatrixTable from "@/components/MatrixTable";
@@ -41,7 +41,11 @@ export default function Dashboard() {
     let result = allFirms.filter((f) => {
       if (category !== "All" && f.category !== category) return false;
       if (activeTiers.size > 0 && !activeTiers.has(f.tier)) return false;
-      if (q && !`${f.name} ${f.headquarters}`.toLowerCase().includes(q)) return false;
+      if (
+        q &&
+        !`${f.name} ${f.profile?.headquarters ?? ""}`.toLowerCase().includes(q)
+      )
+        return false;
       return true;
     });
 
@@ -55,17 +59,17 @@ export default function Dashboard() {
           cmp = a.tier - b.tier;
           break;
         case "trustpilotScore":
-          cmp = (a.trustpilotScore ?? -1) - (b.trustpilotScore ?? -1);
+          cmp = (a.profile?.trustpilotScore ?? -1) - (b.profile?.trustpilotScore ?? -1);
           break;
         case "avgEvaluationFee50k":
           cmp =
-            (a.pricing.avgEvaluationFee50k ?? Infinity) -
-            (b.pricing.avgEvaluationFee50k ?? Infinity);
+            (a.profile?.pricing.avgEvaluationFee50k ?? Infinity) -
+            (b.profile?.pricing.avgEvaluationFee50k ?? Infinity);
           break;
         case "profitSplit":
           cmp =
-            profitSplitSortValue(a.payoutTerms.profitSplit) -
-            profitSplitSortValue(b.payoutTerms.profitSplit);
+            profitSplitSortValue(a.profile?.payoutTerms.profitSplit) -
+            profitSplitSortValue(b.profile?.payoutTerms.profitSplit);
           break;
       }
       return sortDir === "asc" ? cmp : -cmp;
@@ -86,9 +90,10 @@ export default function Dashboard() {
           Prop Firm Competitor Matrix
         </h1>
         <p className="mt-1.5 max-w-2xl text-sm text-zinc-400">
-          Competitive intelligence across {allFirms.length} Futures and Forex/CFD
-          proprietary trading firms — pricing, drawdown rules, payout terms, and
-          reputation, side by side.
+          Tracking {allFirms.length} Futures and Forex/CFD proprietary trading firms —
+          {" "}
+          {stats.profiledCount} with full pricing, drawdown rule, payout term, and
+          reputation detail, the rest logo-identified pending deeper research.
         </p>
       </header>
 

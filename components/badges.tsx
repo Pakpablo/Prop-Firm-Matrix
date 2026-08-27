@@ -42,10 +42,16 @@ export function CategoryPill({ category }: { category: Category }) {
 export function StarRating({
   score,
   count,
+  profiled = true,
 }: {
   score: number | null;
   count: number | null;
+  /** False for roster-only firms with no researched profile at all — renders a plain dash instead of implying Trustpilot withheld the score. */
+  profiled?: boolean;
 }) {
+  if (!profiled) {
+    return <span className="text-xs text-zinc-600">—</span>;
+  }
   if (score === null) {
     return (
       <span className="inline-flex items-center gap-1 text-xs text-zinc-500" title="Trustpilot score currently withheld/unavailable">

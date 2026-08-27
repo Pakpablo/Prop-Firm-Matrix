@@ -23,11 +23,8 @@ export interface PayoutTerms {
   payoutCap: string | null;
 }
 
-export interface Firm {
-  id: string;
-  name: string;
-  category: Category;
-  tier: Tier;
+/** Deep-researched competitive intelligence — only available for firms we've profiled. */
+export interface FirmProfile {
   headquarters: string;
   trustpilotScore: number | null;
   trustpilotReviewsCount: number | null;
@@ -39,6 +36,17 @@ export interface Firm {
   payoutTerms: PayoutTerms;
   uniqueSellingPoints: string[];
   weaknesses: string[];
+}
+
+export interface Firm {
+  id: string;
+  name: string;
+  category: Category;
+  tier: Tier;
+  domain: string;
+  domainVerified: boolean;
+  /** Present only for firms with full researched competitive intelligence. */
+  profile?: FirmProfile;
 }
 
 export type SortKey =

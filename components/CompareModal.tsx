@@ -3,14 +3,15 @@
 import { useEffect } from "react";
 import type { Firm } from "@/lib/types";
 import { CategoryPill, Chip, StarRating, TierBadge } from "@/components/badges";
+import FirmLogo from "@/components/FirmLogo";
 
 interface CompareModalProps {
   firms: Firm[];
   onClose: () => void;
 }
 
-function money(v: number | "None" | null): string {
-  if (v === null) return "—";
+function money(v: number | "None" | null | undefined): string {
+  if (v === null || v === undefined) return "—";
   if (v === "None") return "None";
   return `$${v}`;
 }
@@ -63,6 +64,8 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
     };
   }, [onClose]);
 
+  const anyUnprofiled = firms.some((f) => !f.profile);
+
   return (
     <div className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto bg-black/70 p-4 sm:p-8">
       <div className="w-full max-w-6xl rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
@@ -77,6 +80,13 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
           </button>
         </div>
 
+        {anyUnprofiled && (
+          <div className="border-b border-zinc-800 bg-amber-500/5 px-5 py-2 text-xs text-amber-400">
+            One or more selected firms don&rsquo;t have a full researched profile yet —
+            their pricing/rules rows show as &ldquo;—&rdquo;.
+          </div>
+        )}
+
         <div className="overflow-x-auto">
           <table className="w-full min-w-[700px] border-collapse text-left">
             <thead>
@@ -84,7 +94,10 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
                 <td className="sticky left-0 bg-zinc-950 px-4 py-3" />
                 {firms.map((f) => (
                   <td key={f.id} className="min-w-[220px] px-4 py-3">
-                    <div className="font-semibold text-zinc-100">{f.name}</div>
+                    <div className="flex items-center gap-2">
+                      <FirmLogo name={f.name} domain={f.domain} size={24} />
+                      <div className="font-semibold text-zinc-100">{f.name}</div>
+                    </div>
                     <div className="mt-1 flex flex-wrap gap-1.5">
                       <CategoryPill category={f.category} />
                       <TierBadge tier={f.tier} compact />
@@ -96,15 +109,16 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
             <tbody>
               <CompareRow
                 label="Headquarters"
-                values={firms.map((f) => f.headquarters)}
+                values={firms.map((f) => f.profile?.headquarters ?? "—")}
               />
               <CompareRow
                 label="Trustpilot"
                 values={firms.map((f) => (
                   <StarRating
                     key={f.id}
-                    score={f.trustpilotScore}
-                    count={f.trustpilotReviewsCount}
+                    score={f.profile?.trustpilotScore ?? null}
+                    count={f.profile?.trustpilotReviewsCount ?? null}
+                    profiled={!!f.profile}
                   />
                 ))}
               />
@@ -112,26 +126,27 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
               <Section title="Pricing">
                 <CompareRow
                   label="Pricing Type"
-                  values={firms.map((f) => f.pricing.pricingType)}
+                  values={firms.map((f) => f.profile?.pricing.pricingType ?? "—")}
                 />
                 <CompareRow
                   label="Eval Fee (50K)"
-                  values={firms.map((f) => money(f.pricing.avgEvaluationFee50k))}
+                  values={firms.map((f) => money(f.profile?.pricing.avgEvaluationFee50k))}
                 />
                 <CompareRow
                   label="Activation Fee"
-                  values={firms.map((f) => money(f.pricing.activationFee))}
+                  values={firms.map((f) => money(f.profile?.pricing.activationFee))}
                 />
                 <CompareRow
                   label="Reset Fee"
-                  values={firms.map((f) => money(f.pricing.resetFee))}
+                  values={firms.map((f) => money(f.profile?.pricing.resetFee))}
                 />
                 <CompareRow
                   label="Bulk Discounts"
                   values={firms.map((f) =>
-                    f.pricing.hasBulkDiscounts === null
+                    f.profile?.pricing.hasBulkDiscounts === null ||
+                    f.profile?.pricing.hasBulkDiscounts === undefined
                       ? "—"
-                      : f.pricing.hasBulkDiscounts
+                      : f.profile.pricing.hasBulkDiscounts
                       ? "Yes"
                       : "No"
                   )}
@@ -141,38 +156,40 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
               <Section title="Drawdown Rules">
                 <CompareRow
                   label="Type"
-                  values={firms.map((f) => f.drawdownRules.type)}
+                  values={firms.map((f) => f.profile?.drawdownRules.type ?? "—")}
                 />
                 <CompareRow
                   label="Daily Loss Limit"
-                  values={firms.map((f) => f.drawdownRules.dailyLossLimit)}
+                  values={firms.map((f) => f.profile?.drawdownRules.dailyLossLimit ?? "—")}
                 />
                 <CompareRow
                   label="Min Trading Days"
-                  values={firms.map((f) => f.drawdownRules.minTradingDays?.toString() ?? "—")}
+                  values={firms.map(
+                    (f) => f.profile?.drawdownRules.minTradingDays?.toString() ?? "—"
+                  )}
                 />
                 <CompareRow
                   label="Consistency Rule"
-                  values={firms.map((f) => f.drawdownRules.consistencyRule)}
+                  values={firms.map((f) => f.profile?.drawdownRules.consistencyRule ?? "—")}
                 />
               </Section>
 
               <Section title="Payout Terms">
                 <CompareRow
                   label="Profit Split"
-                  values={firms.map((f) => f.payoutTerms.profitSplit)}
+                  values={firms.map((f) => f.profile?.payoutTerms.profitSplit ?? "—")}
                 />
                 <CompareRow
                   label="Frequency"
-                  values={firms.map((f) => f.payoutTerms.frequency)}
+                  values={firms.map((f) => f.profile?.payoutTerms.frequency ?? "—")}
                 />
                 <CompareRow
                   label="Min Payout"
-                  values={firms.map((f) => money(f.payoutTerms.minPayoutAmount))}
+                  values={firms.map((f) => money(f.profile?.payoutTerms.minPayoutAmount))}
                 />
                 <CompareRow
                   label="Payout Cap"
-                  values={firms.map((f) => f.payoutTerms.payoutCap ?? "—")}
+                  values={firms.map((f) => f.profile?.payoutTerms.payoutCap ?? "—")}
                 />
               </Section>
 
@@ -181,9 +198,7 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
                   label="Platforms"
                   values={firms.map((f) => (
                     <div key={f.id} className="flex flex-wrap gap-1">
-                      {f.platforms.map((p) => (
-                        <Chip key={p}>{p}</Chip>
-                      ))}
+                      {f.profile?.platforms.map((p) => <Chip key={p}>{p}</Chip>) ?? "—"}
                     </div>
                   ))}
                 />
@@ -191,9 +206,7 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
                   label="Account Sizes"
                   values={firms.map((f) => (
                     <div key={f.id} className="flex flex-wrap gap-1">
-                      {f.accountSizes.map((s) => (
-                        <Chip key={s}>{s}</Chip>
-                      ))}
+                      {f.profile?.accountSizes.map((s) => <Chip key={s}>{s}</Chip>) ?? "—"}
                     </div>
                   ))}
                 />
@@ -204,12 +217,12 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
                   label="USPs"
                   values={firms.map((f) => (
                     <ul key={f.id} className="space-y-1">
-                      {f.uniqueSellingPoints.map((p, i) => (
+                      {f.profile?.uniqueSellingPoints.map((p, i) => (
                         <li key={i} className="flex gap-1.5">
                           <span className="text-emerald-500">✓</span>
                           <span>{p}</span>
                         </li>
-                      ))}
+                      )) ?? "—"}
                     </ul>
                   ))}
                 />
@@ -217,12 +230,12 @@ export default function CompareModal({ firms, onClose }: CompareModalProps) {
                   label="Weaknesses"
                   values={firms.map((f) => (
                     <ul key={f.id} className="space-y-1">
-                      {f.weaknesses.map((p, i) => (
+                      {f.profile?.weaknesses.map((p, i) => (
                         <li key={i} className="flex gap-1.5">
                           <span className="text-amber-500">⚠</span>
                           <span>{p}</span>
                         </li>
-                      ))}
+                      )) ?? "—"}
                     </ul>
                   ))}
                 />
